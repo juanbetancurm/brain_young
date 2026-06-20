@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mantén tu cerebro joven</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFF7EF;
+    --ink:#2D2236;
+    --soft-ink:#5A4F66;
+    --coral:#FF6A52;
+    --marigold:#FFB335;
+    --teal:#16A085;
+    --sky:#4FB0E5;
+    --plum:#7A4FD0;
+    --rose:#F2618C;
+    --card:#FFFFFF;
+    --shadow:0 14px 30px rgba(45,34,54,.10);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html{scroll-behavior:smooth}
+
+  body{
+    font-family:'Mulish',system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    font-size:19px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  .wrap{max-width:660px;margin:0 auto;padding:0 22px}
+
+  h1,h2,h3{font-family:'Baloo 2',cursive;line-height:1.12;letter-spacing:-.01em}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:54px 0 46px;
+    text-align:center;
+    background:
+      radial-gradient(120% 90% at 50% -10%, #FFE6C2 0%, rgba(255,230,194,0) 60%),
+      radial-gradient(80% 60% at 85% 20%, #FFD9D1 0%, rgba(255,217,209,0) 55%);
+    overflow:hidden;
+  }
+  .eyebrow{
+    display:inline-block;
+    font-weight:700;
+    font-size:.82rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--coral);
+    background:#fff;
+    padding:8px 16px;
+    border-radius:100px;
+    box-shadow:var(--shadow);
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2.5rem,11vw,3.6rem);
+    font-weight:800;
+    color:var(--ink);
+  }
+  .hero h1 .pop{color:var(--coral);display:inline-block}
+  .hero p.lead{
+    margin:18px auto 0;
+    max-width:30ch;
+    font-size:1.15rem;
+    color:var(--soft-ink);
+    font-weight:500;
+  }
+
+  /* ---------- CLOCK ---------- */
+  .clock-stage{
+    margin:34px auto 8px;
+    width:230px;
+    position:relative;
+  }
+  .clock{
+    width:230px;height:230px;border-radius:50%;
+    background:#fff;
+    box-shadow:var(--shadow), inset 0 0 0 10px #FFEede;
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+    flex-direction:column;
+  }
+  .tick{position:absolute;width:5px;height:16px;background:#E7D9CC;left:50%;top:12px;margin-left:-2.5px;border-radius:3px;transform-origin:2.5px 103px}
+  .age-num{
+    font-family:'Baloo 2',cursive;
+    font-weight:800;
+    font-size:3.2rem;
+    color:var(--teal);
+    line-height:1;
+  }
+  .age-label{font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft-ink);margin-top:4px}
+  .hand{
+    position:absolute;left:50%;top:50%;
+    width:6px;height:78px;
+    background:var(--coral);
+    border-radius:6px;
+    transform-origin:bottom center;
+    transform:translate(-50%,-100%) rotate(160deg);
+    animation:rewind 4.5s ease-in-out infinite;
+  }
+  .hub{position:absolute;left:50%;top:50%;width:18px;height:18px;background:var(--ink);border-radius:50%;transform:translate(-50%,-50%);z-index:2}
+  .rewind-tag{
+    position:absolute;top:-14px;right:-6px;
+    background:var(--marigold);color:#5a3d00;
+    font-family:'Baloo 2',cursive;font-weight:700;
+    font-size:.95rem;
+    padding:8px 14px;border-radius:100px;
+    box-shadow:var(--shadow);
+    transform:rotate(6deg);
+  }
+  @keyframes rewind{
+    0%{transform:translate(-50%,-100%) rotate(160deg)}
+    45%{transform:translate(-50%,-100%) rotate(-150deg)}
+    55%{transform:translate(-50%,-100%) rotate(-150deg)}
+    100%{transform:translate(-50%,-100%) rotate(160deg)}
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:46px 0}
+  .tag{
+    font-weight:700;font-size:.8rem;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--coral);
+    margin-bottom:10px;
+  }
+  h2{font-size:clamp(1.7rem,7vw,2.2rem);font-weight:700;margin-bottom:14px}
+  .body-copy{font-size:1.1rem;color:var(--soft-ink);font-weight:500}
+
+  /* ---------- BIG IDEA (analogy) ---------- */
+  .idea{
+    background:linear-gradient(135deg,#1AA68B,#0E8C77);
+    color:#fff;border-radius:30px;
+    padding:34px 28px;box-shadow:var(--shadow);
+    text-align:center;
+  }
+  .idea .emoji{font-size:3rem;line-height:1;display:block;margin-bottom:8px}
+  .idea h2{color:#fff;margin-bottom:10px}
+  .idea p{color:#E6FFF8;font-size:1.12rem;font-weight:500;max-width:34ch;margin:0 auto}
+
+  /* ---------- FINDING / number ---------- */
+  .finding{text-align:center}
+  .big-num{
+    font-family:'Baloo 2',cursive;font-weight:800;
+    font-size:clamp(3.4rem,18vw,5rem);
+    color:var(--plum);line-height:1;
+  }
+  .finding small{display:block;font-size:1.05rem;color:var(--soft-ink);font-weight:600;margin-top:4px}
+  .finding p{margin:18px auto 0;max-width:34ch;font-size:1.12rem;color:var(--soft-ink);font-weight:500}
+
+  /* ---------- HOBBY CARDS ---------- */
+  .hobbies h2{text-align:center}
+  .hobbies .body-copy{text-align:center;max-width:32ch;margin:0 auto 28px}
+  .cards{display:grid;gap:18px}
+  .card{
+    background:var(--card);border-radius:24px;
+    padding:22px 22px 24px;box-shadow:var(--shadow);
+    border-left:10px solid var(--c,#ccc);
+    position:relative;
+  }
+  .card .head{display:flex;align-items:center;gap:14px}
+  .card .ico{
+    font-size:2.1rem;width:58px;height:58px;flex:none;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--tint,#f3f3f3);border-radius:18px;
+  }
+  .card h3{font-size:1.45rem;font-weight:700;color:var(--ink)}
+  .card .why{margin:14px 0 16px;color:var(--soft-ink);font-weight:500;font-size:1.05rem}
+  .step{
+    display:flex;gap:10px;align-items:flex-start;
+    background:var(--tint,#f7f7f7);
+    border-radius:16px;padding:13px 15px;
+    font-weight:600;color:var(--ink);font-size:1rem;
+  }
+  .step b{color:var(--c)}
+  .step .pin{font-size:1.1rem;line-height:1.4}
+
+  /* ---------- EASY ---------- */
+  .easy{background:#FFEede;border-radius:30px;padding:36px 26px;box-shadow:var(--shadow)}
+  .easy h2{text-align:center}
+  .easy .body-copy{text-align:center;max-width:30ch;margin:0 auto 24px}
+  .easy ul{list-style:none;display:grid;gap:14px;max-width:480px;margin:0 auto}
+  .easy li{
+    display:flex;gap:14px;align-items:center;
+    background:#fff;border-radius:16px;padding:14px 16px;
+    font-weight:600;font-size:1.05rem;
+  }
+  .easy li .check{
+    flex:none;width:34px;height:34px;border-radius:50%;
+    background:var(--teal);color:#fff;font-weight:800;
+    display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+  }
+
+  /* ---------- CTA ---------- */
+  .cta{
+    text-align:center;
+    background:linear-gradient(135deg,var(--coral),#FF8A52);
+    color:#fff;border-radius:30px;padding:42px 28px;box-shadow:var(--shadow);
+  }
+  .cta h2{color:#fff}
+  .cta p{color:#FFF0EB;font-size:1.12rem;font-weight:500;max-width:30ch;margin:12px auto 0}
+  .cta .pill{
+    display:inline-block;margin-top:24px;
+    background:#fff;color:var(--coral);
+    font-family:'Baloo 2',cursive;font-weight:700;font-size:1.2rem;
+    padding:16px 30px;border-radius:100px;
+    box-shadow:0 10px 22px rgba(0,0,0,.18);
+  }
+
+  footer{padding:34px 0 50px;text-align:center}
+  footer p{font-size:.9rem;color:#A89C9C;font-weight:500;max-width:40ch;margin:0 auto}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (prefers-reduced-motion:reduce){
+    .hand{animation:none;transform:translate(-50%,-100%) rotate(-150deg)}
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Un regalo para tu cerebro</span>
+      <h1>Mantén tu cerebro <span class="pop">joven</span></h1>
+      <p class="lead">Pequeños pasatiempos divertidos ayudan a que tu mente siga ágil — y es más fácil de lo que crees.</p>
+
+      <div class="clock-stage">
+        <div class="rewind-tag">⏪ ¡rebobinando!</div>
+        <div class="clock" id="clock">
+          <div class="age-num" id="ageNum">72</div>
+          <div class="age-label">edad cerebral</div>
+          <div class="hand"></div>
+          <div class="hub"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BIG IDEA -->
+  <section>
+    <div class="wrap reveal">
+      <div class="idea">
+        <span class="emoji">🌱</span>
+        <h2>Tu cerebro es como un jardín</h2>
+        <p>Si lo sigues usando de maneras nuevas y divertidas, se mantiene verde y lleno de vida. Los pasatiempos creativos son el agua y el sol.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINDING -->
+  <section>
+    <div class="wrap finding reveal">
+      <p class="tag">Lo que descubrieron los científicos</p>
+      <div class="big-num">1.400</div>
+      <small>personas estudiadas en 13 países</small>
+      <p>Quienes bailaban, hacían música, pintaban o jugaban tenían un cerebro que actuaba <b>más joven que su edad real</b>. Como rebobinar el reloj.</p>
+    </div>
+  </section>
+
+  <!-- HOBBIES -->
+  <section class="hobbies">
+    <div class="wrap">
+      <div class="reveal">
+        <h2>6 pasatiempos felices</h2>
+        <p class="body-copy">Elige el que te parezca más divertido. Cada uno trae una manera sencilla de empezar hoy mismo.</p>
+      </div>
+
+      <div class="cards">
+
+        <article class="card reveal" style="--c:var(--rose);--tint:#FFEAF0">
+          <div class="head">
+            <div class="ico">💃</div>
+            <h3>Bailar</h3>
+          </div>
+          <p class="why">La música más el movimiento hacen que todo tu cerebro se ilumine. ¡El tango fue la estrella del estudio!</p>
+          <div class="step"><span class="pin">👉</span><span><b>Empieza hoy:</b> pon tu canción favorita y muévete en la cocina durante una canción entera.</span></div>
+        </article>
+
+        <article class="card reveal" style="--c:var(--marigold);--tint:#FFF2D6">
+          <div class="head">
+            <div class="ico">🎵</div>
+            <h3>Música</h3>
+          </div>
+          <p class="why">Cantar o tocar unas pocas notas es como un ejercicio que despierta muchas partes del cerebro a la vez.</p>
+          <div class="step"><span class="pin">👉</span><span><b>Empieza hoy:</b> canta una vieja favorita, o marca un ritmo con los dedos sobre la mesa.</span></div>
+        </article>
+
+        <article class="card reveal" style="--c:var(--plum);--tint:#EFE7FB">
+          <div class="head">
+            <div class="ico">🎨</div>
+            <h3>Pintar y dibujar</h3>
+          </div>
+          <p class="why">No tienes que ser bueno — hasta garabatear y colorear cuentan. Lo que ayuda es intentarlo.</p>
+          <div class="step"><span class="pin">👉</span><span><b>Empieza hoy:</b> dibuja tu taza de café, o colorea una página de un libro para colorear.</span></div>
+        </article>
+
+        <article class="card reveal" style="--c:var(--sky);--tint:#E3F3FC">
+          <div class="head">
+            <div class="ico">🧩</div>
+            <h3>Juegos y rompecabezas</h3>
+          </div>
+          <p class="why">Las cartas, los crucigramas o un juego en el teléfono hacen que tu cerebro planifique y piense por adelantado.</p>
+          <div class="step"><span class="pin">👉</span><span><b>Empieza hoy:</b> haz un crucigrama, o juega una mano de cartas con un amigo.</span></div>
+        </article>
+
+        <article class="card reveal" style="--c:var(--coral);--tint:#FFE7E2">
+          <div class="head">
+            <div class="ico">📖</div>
+            <h3>Leer</h3>
+          </div>
+          <p class="why">Una buena historia lleva a tu cerebro de viaje y mantiene fuerte tu imaginación.</p>
+          <div class="step"><span class="pin">👉</span><span><b>Empieza hoy:</b> lee solo una página de algo que disfrutes antes de dormir.</span></div>
+        </article>
+
+        <article class="card reveal" style="--c:var(--teal);--tint:#DDF5EF">
+          <div class="head">
+            <div class="ico">🪴</div>
+            <h3>Jardinería</h3>
+          </div>
+          <p class="why">Plantar y cuidar mantiene tus manos ocupadas y tu mente tranquila y concentrada.</p>
+          <div class="step"><span class="pin">👉</span><span><b>Empieza hoy:</b> riega una planta, o pon una semilla en una macetita con tierra.</span></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY EASY -->
+  <section>
+    <div class="wrap reveal">
+      <div class="easy">
+        <h2>Es más fácil de lo que crees</h2>
+        <p class="body-copy">No hace falta talento. Lo importante es divertirse.</p>
+        <ul>
+          <li><span class="check">✓</span><span>Con solo <b>15 minutos</b> basta para empezar.</span></li>
+          <li><span class="check">✓</span><span>No tienes que hacerlo bien.</span></li>
+          <li><span class="check">✓</span><span>Empezar tarde también ayuda — nunca es tarde.</span></li>
+          <li><span class="check">✓</span><span>Hacerlo acompañado lo hace aún mejor.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="wrap reveal">
+      <div class="cta">
+        <h2>Te toca a ti 💪</h2>
+        <p>Elige un pasatiempo de arriba y pruébalo esta semana. Tu cerebro te lo agradecerá.</p>
+        <span class="pill">Elige uno. Empieza hoy.</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Inspirado en un estudio de 2025 publicado en Nature Communications sobre los pasatiempos creativos y el envejecimiento del cerebro. Información general — consulta siempre con tu médico sobre lo que es mejor para ti.</p>
+  </footer>
+
+<script>
+  // Count the "brain age" down once when the clock comes into view
+  (function(){
+    var num = document.getElementById('ageNum');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){ num.textContent = '61'; return; }
+    var start = 72, end = 61, done = false;
+    function run(){
+      if(done) return; done = true;
+      var cur = start;
+      var t = setInterval(function(){
+        cur--; num.textContent = cur;
+        if(cur<=end) clearInterval(t);
+      }, 160);
+    }
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting) run(); });
+    },{threshold:.5});
+    io.observe(document.getElementById('clock'));
+  })();
+
+  // Build clock ticks
+  (function(){
+    var clock = document.getElementById('clock');
+    for(var i=0;i<12;i++){
+      var t=document.createElement('div');
+      t.className='tick';
+      t.style.transform='rotate('+(i*30)+'deg)';
+      clock.appendChild(t);
+    }
+  })();
+
+  // Reveal on scroll
+  (function(){
+    var els=document.querySelectorAll('.reveal');
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    },{threshold:.15});
+    els.forEach(function(el){io.observe(el)});
+  })();
+</script>
+</body>
+</html>
