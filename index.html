@@ -43,7 +43,8 @@
   /* ---------- HERO ---------- */
   .hero{
     position:relative;
-    padding:54px 0 46px;
+    min-height:100svh;
+    padding:54px 0 108px;
     text-align:center;
     background:
       radial-gradient(120% 90% at 50% -10%, #FFE6C2 0%, rgba(255,230,194,0) 60%),
@@ -75,6 +76,44 @@
     font-size:1.15rem;
     color:var(--soft-ink);
     font-weight:500;
+  }
+  .scroll-cue{
+    position:fixed;
+    left:50%;
+    bottom:24px;
+    width:58px;
+    height:58px;
+    border:0;
+    border-radius:50%;
+    background:var(--coral);
+    color:#fff;
+    box-shadow:0 12px 26px rgba(255,106,82,.35);
+    cursor:pointer;
+    transform:translateX(-50%);
+    animation:scroll-pulse 1.8s ease-in-out infinite;
+    transition:opacity .25s ease,background .2s ease;
+    z-index:4;
+  }
+  .scroll-cue.is-hidden{opacity:0;pointer-events:none}
+  .scroll-cue::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:18px;
+    width:13px;
+    height:13px;
+    border-right:4px solid currentColor;
+    border-bottom:4px solid currentColor;
+    transform:translateX(-50%) rotate(45deg);
+  }
+  .scroll-cue:hover{background:#F4533B}
+  .scroll-cue:focus-visible{
+    outline:4px solid #fff;
+    box-shadow:0 0 0 7px var(--ink),0 12px 26px rgba(255,106,82,.35);
+  }
+  @keyframes scroll-pulse{
+    0%,100%{transform:translateX(-50%) translateY(0);box-shadow:0 12px 26px rgba(255,106,82,.35)}
+    50%{transform:translateX(-50%) translateY(9px);box-shadow:0 16px 32px rgba(255,106,82,.5)}
   }
 
   /* ---------- CLOCK ---------- */
@@ -226,6 +265,7 @@
 
   @media (prefers-reduced-motion:reduce){
     .hand{animation:none;transform:translate(-50%,-100%) rotate(-150deg)}
+    .scroll-cue{animation:none}
     .reveal{opacity:1;transform:none;transition:none}
     html{scroll-behavior:auto}
   }
@@ -250,10 +290,11 @@
         </div>
       </div>
     </div>
+    <button class="scroll-cue" id="scrollCue" type="button" aria-label="Seguir leyendo"></button>
   </header>
 
   <!-- BIG IDEA -->
-  <section>
+  <section id="bigIdea">
     <div class="wrap reveal">
       <div class="idea">
         <span class="emoji">🌱</span>
@@ -411,6 +452,23 @@
       es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
     },{threshold:.15});
     els.forEach(function(el){io.observe(el)});
+  })();
+
+  // Move to the next part of the story when the down arrow is pressed
+  (function(){
+    var cue=document.getElementById('scrollCue');
+    var target=document.getElementById('bigIdea');
+    var hero=document.querySelector('.hero');
+    var cueObserver=new IntersectionObserver(function(entries){
+      cue.classList.toggle('is-hidden',!entries[0].isIntersecting);
+    },{threshold:.1});
+    cueObserver.observe(hero);
+    cue.addEventListener('click',function(){
+      target.scrollIntoView({
+        behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',
+        block:'start'
+      });
+    });
   })();
 </script>
 </body>
